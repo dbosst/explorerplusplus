@@ -2383,6 +2383,14 @@ LRESULT Explorerplusplus::OnCustomDraw(LPARAM lParam)
 				m_pActiveShellBrowser->QueryFullItemName(static_cast<int>(pnmcd->dwItemSpec),szFileName,SIZEOF_ARRAY(szFileName));
 				PathStripPath(szFileName);
 
+				/* alternate background colors of rows */
+				if ((pnmcd->dwItemSpec % 2) == 0)
+				{
+					pnmlvcd->clrTextBk = RGB(255,255,255);
+				} else {
+					pnmlvcd->clrTextBk = RGB(223,255,223);
+				}
+
 				/* Loop through each filter. Decide whether to change the font of the
 				current item based on its filename and/or attributes. */
 				for each(auto ColorRule in m_ColorRules)
